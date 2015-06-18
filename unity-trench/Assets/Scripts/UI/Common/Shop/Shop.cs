@@ -73,13 +73,13 @@ public class Shop : MonoBehaviour
 	{
 		if (good.priceType == PriceType.Coin) {
 			if (user.coin < good.price) {
-				dialogs.ShowConfirmDialog (TextManager.Get ("lowCoinTip"), ShowCoinPage);
+                dialogs.ShowConfirmDialog (TextManager.Get ("lowCoinTip"), ShowCoinPage,TextManager.Get("Buy"),true,null,null,TextManager.Get("lowCoinTitle"));
 			} else {
 				OnBuyItem (good);
 			}
 		} else if (good.priceType == PriceType.Diamond) {
 			if (user.diamond < good.price) {
-				dialogs.ShowConfirmDialog (TextManager.Get ("lowDiamondTip"), ShowDiamondPage);
+                dialogs.ShowConfirmDialog (TextManager.Get ("lowDiamondTip"), ShowDiamondPage,TextManager.Get("Buy"),true,null,null,TextManager.Get("lowDiamondTitle"));
 			} else {
 				OnBuyCoin (good);
 			}

@@ -135,7 +135,7 @@ public class ArenaUI : MonoBehaviour
             }
         } else if (user.coin >= roomData.dwMaxBonus)
         {
-            dialogs.ShowConfirmDialog(TextManager.Get("highCoinRoomTip"), null, null, false);
+            dialogs.ShowConfirmDialog(TextManager.Get("highCoinRoomTip"), null, null, false,null,null,TextManager.Get("highCoinTitle"));
         } else
         {
             room = roomData;
@@ -180,7 +180,7 @@ public class ArenaUI : MonoBehaviour
             Debug.Log(btn.GetRoomData());
             if (btn.GetRoomData() != null)
             {
-                if (user.coin >= btn.GetRoomData().dwMinBonus || btn.GetRoomData().bRelief)
+                if (user.coin >= btn.GetRoomData().dwMinBonus || (btn.GetRoomData().bRelief && PlayerPrefs.GetInt("LowCoinGift", maxGiftNum)>0))
                 {
                     targetRoom = btn;
                 }

@@ -240,6 +240,7 @@ public class MainGame : MonoBehaviour, IGameSink
 
         if (mGameHelper.GetStage() == GameHelper.STAGE_GATE)
         {
+            tip = TextManager.Get("quitLevelTip");
             return tip;
         }
 
@@ -307,7 +308,8 @@ public class MainGame : MonoBehaviour, IGameSink
                                 DataBase.Instance.SCENE_MGR.SetScene(SceneMgr.SC_Hall);
                         
                             },
-                            TextManager.Get("Buy")
+                            TextManager.Get("Buy"),
+                        TextManager.Get("lowCoinGiftTitle")
                         );
 
                     }
@@ -330,7 +332,8 @@ public class MainGame : MonoBehaviour, IGameSink
                                 DataBase.Instance.SCENE_MGR.SetScene(SceneMgr.SC_Hall);
 
                             },
-                            TextManager.Get("Buy")
+                            TextManager.Get("Buy"),
+                        TextManager.Get("lowCoinGiftTitle")
                         );
                     }
                 }
@@ -345,7 +348,7 @@ public class MainGame : MonoBehaviour, IGameSink
                         MainGame.inst.OnExitGame();
                         DataBase.Instance.SCENE_MGR.SetScene(SceneMgr.SC_Hall);
                     }
-                    , null, false);
+                , null, false,null,null,TextManager.Get("highCoinTitle"));
                 return;
             }
         }
@@ -601,9 +604,7 @@ public class MainGame : MonoBehaviour, IGameSink
 
     private IEnumerator OnGameStart(CMD_S_GameStart gscmd)
     {
-        Debuger.Instance.Log("游戏开始>>>>>>>>>");
-        Debuger.Instance.Log(string.Format("坑主： 玩家【{0}】 叫分：{1}", gscmd.wLandUser,gscmd.bLandScore));
-        Debuger.Instance.Log("底牌： " + COMMON_FUNC.ShowCardListStr(gscmd.bBackCard));
+        Debuger.Instance.Log("GameStart");
         //设置坑主
         mGameView.SetMaster(gscmd.wLandUser);
         if (gscmd.wLandUser == SELT_VIEW_CHAIR)
@@ -662,7 +663,6 @@ public class MainGame : MonoBehaviour, IGameSink
         //状态校验
         if (GameHelper.Instance.GameStatus != CMD_Trench.GS_WK_PLAYING)
             return true;
-        
         mGameView.ClockStop();
 
         //---------------------------------------------
@@ -670,11 +670,6 @@ public class MainGame : MonoBehaviour, IGameSink
         byte[] temp = new byte[cmd.bCardCount];
         System.Array.Copy(cmd.bCardData, temp, cmd.bCardCount);
 
-        string sLog = string.Format(
-            "玩家【{0}】 出牌：{1}  手牌：{2} ",
-            cmd.wOutCardUser, COMMON_FUNC.ShowCardListStr(temp),
-            COMMON_FUNC.ShowCardListStr(mGameHelper.PlayerHandCard[cmd.wOutCardUser]));
-        Debuger.Instance.Log(sLog);
         //清除当前玩家上次出牌    
         if (!COMMON_FUNC.IsInvalidChair(cmd.wCurrentUser))
             mGameView.ClearOutCards((PlayerPanelPosition)cmd.wCurrentUser); 
@@ -742,7 +737,7 @@ public class MainGame : MonoBehaviour, IGameSink
         mGameView.ToggleCards(CardControlLevel.Locked);
         SetActivePlay(PLAY_CLOSE);
 
-        //Debuger.Instance.Log("--------------Auto Card:" + mGameHelper.TurnOutCard.Count);
+        Debuger.Instance.Log("--------------Auto Card:" + mGameHelper.TurnOutCard.Count);
 
         yield return new WaitForSeconds(2);
 
@@ -784,7 +779,7 @@ public class MainGame : MonoBehaviour, IGameSink
     {
         VFX vfx = ShowCardVxf(setid, cardlist, delegate
         {
-            //Debug.Log("FinishVfx");
+            Debug.Log("FinishVfx");
         });
         //显示出牌数据 
         if (setid == mPlayers [SELT_VIEW_CHAIR].mUser.wChairID)
@@ -824,7 +819,7 @@ public class MainGame : MonoBehaviour, IGameSink
 
         if (isAutoOut)
         {
-            //Debuger.Instance.Log("Auto Out Card");
+            Debuger.Instance.Log("Auto Out Card");
 
             //mGameView.ToggleCards(CardControlLevel.Locked);
             mGameView.ToggleAgent(true);
@@ -843,7 +838,7 @@ public class MainGame : MonoBehaviour, IGameSink
             return true;
         } else
         {      
-            //Debuger.Instance.Log("Auto Out Card Canncal");
+            Debuger.Instance.Log("Auto Out Card Canncal");
             ClearDelegate();
             return true;
         }        
@@ -978,7 +973,6 @@ public class MainGame : MonoBehaviour, IGameSink
         //删除定时器
         if (GameHelper.Instance.GameStatus != CMD_Trench.GS_WK_PLAYING)
             return true;
-        Debuger.Instance.Log(string.Format("玩家【{0}】 不出 ",cmd.wPassUser));
         mGameView.ClockStop();
 
         //玩家设置
@@ -1093,13 +1087,6 @@ public class MainGame : MonoBehaviour, IGameSink
 
     bool OnSubGameEnd(CMD_S_GameEnd cmd)
     {
-        Debuger.Instance.Log("一局游戏结束>>>>>>>>>>>>");
-        Debuger.Instance.Log("游戏税收：" + cmd.lGameTax);
-        for(int i=0;i<CMD_Trench.GAME_PLAYER;i++)
-        {
-            Debuger.Instance.Log(string.Format("玩家【{0}】： 积分 {1}  ",i,cmd.lGameScore[i]));
-        }
-            
         SetState(STATE_STATISTICS);
         switch (mGameHelper.GetStage())
         {
@@ -1280,7 +1267,7 @@ public class MainGame : MonoBehaviour, IGameSink
          
         } else
         {//可以不出
-            //Debuger.Instance.Log("default pass");
+            Debuger.Instance.Log("default pass");
             //
             ActionPassCard(SELT_VIEW_CHAIR);
             mGameHelper.PassCard(SELT_VIEW_CHAIR);
@@ -1358,7 +1345,7 @@ public class MainGame : MonoBehaviour, IGameSink
 
     private void NextPlayer(ushort currentid)
     {
-        //Debuger.Instance.Log("CurrentUser: " + currentid);
+        Debuger.Instance.Log("CurrentUser: " + currentid);
 
         TaskPlayerChange(currentid);
 
@@ -1383,7 +1370,7 @@ public class MainGame : MonoBehaviour, IGameSink
     /// <returns></returns>
     public bool OnPlayCard(byte[] cardList)
     {
-        //Debuger.Instance.Log("Select Card :" + cardList.Length);
+        Debuger.Instance.Log("Select Card :" + cardList.Length);
 
         if (VerdictOutCard(cardList))
         {
@@ -1455,7 +1442,7 @@ public class MainGame : MonoBehaviour, IGameSink
         {
             case ChoiceCommand.CHOICE_PASS:
 
-                //Debuger.Instance.Log("OnChoice:Pass");
+                Debuger.Instance.Log("OnChoice:Pass");
 
                 ActionPassCard(SELT_VIEW_CHAIR);
 
@@ -1571,7 +1558,7 @@ public class MainGame : MonoBehaviour, IGameSink
         {
             return;
         }
-        //Debuger.Instance.Log(" GameBreakCut ");
+        Debuger.Instance.Log(" GameBreakCut ");
         //-------------------------------------------
 
         switch (stageCategory)

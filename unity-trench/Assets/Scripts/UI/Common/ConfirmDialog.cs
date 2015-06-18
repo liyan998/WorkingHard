@@ -58,8 +58,8 @@ public class ConfirmDialog : Dialog
             cancelBtn.gameObject.SetActive(true);
 //            closeBtn.gameObject.SetActive(true);
             backBtn.enabled = true;
-            cancelBtn.transform.localPosition = new Vector3(btnX, cancelBtn.transform.localPosition.y, cancelBtn.transform.localPosition.z);
-            confirmBtn.transform.localPosition = new Vector3(-btnX, confirmBtn.transform.localPosition.y, confirmBtn.transform.localPosition.z);
+            cancelBtn.transform.localPosition = new Vector3(-btnX, cancelBtn.transform.localPosition.y, cancelBtn.transform.localPosition.z);
+            confirmBtn.transform.localPosition = new Vector3(btnX, confirmBtn.transform.localPosition.y, confirmBtn.transform.localPosition.z);
         } else
         {
             cancelBtn.gameObject.SetActive(false);

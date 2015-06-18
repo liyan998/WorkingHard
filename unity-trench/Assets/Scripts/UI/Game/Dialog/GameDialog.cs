@@ -55,7 +55,7 @@ public class GameDialog : DialogManager
 //        mConfigDialog.Init(MainGame.inst.GetBreakButtonTip(), ExitGameScene);
 //        mConfigDialog.gameObject.SetActive(true);
 //        mConfigDialog.Show(GameDialogIndex.CONFIRM);
-        ShowConfirmDialog(MainGame.inst.GetBreakButtonTip(), ExitGameScene);
+        ShowConfirmDialog(MainGame.inst.GetBreakButtonTip(), ExitGameScene, null, true, null, null, TextManager.Get("quitTitle"));
     }
 
     public void ShowConfirmDialog(string descString, Action onConfirmed, string confirmDescString=null, bool hasCancelBtn=true, Action onCancelled=null, string cancelDescString=null, string title=null)
@@ -116,13 +116,13 @@ public class GameDialog : DialogManager
         }
     }
 
-    public void ShowStageResult(bool isSuccess, int starNum, int score,string target, List<INFO_REWARD> reward,
+    public void ShowStageResult(bool isSuccess, int starNum, int score, string target, List<INFO_REWARD> reward,
                                 Action onBack,
                                 Action onNext, Action onReplay)
     {
         HideDialog((int)GameDialogIndex.MissionState);
         ShowDialog((int)GameDialogIndex.STAGERESULT);
-        levelCompleteDialog.Init(isSuccess, starNum,score, reward, target, onBack, onNext, onReplay);
+        levelCompleteDialog.Init(isSuccess, starNum, score, reward, target, onBack, onNext, onReplay);
 //      GateFinalDialog dig = currentDialog as GateFinalDialog;
 //      if (dig != null) {
 //          dig.InitFinal (isSuccess, starNum, target, score,reward);

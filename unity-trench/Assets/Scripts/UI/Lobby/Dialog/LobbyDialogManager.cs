@@ -56,7 +56,7 @@ public class LobbyDialogManager : DialogManager
        
         //StartCoroutine(StartCheckVersion());        
 
-        CheckVersion();
+        //CheckVersion();
       
     }
 
