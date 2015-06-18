@@ -19,10 +19,11 @@ public class LoadingMgr : MonoBehaviour
 
     SingleDownMgr downMr;
 
+    DataBase database;
 
 	void Start() 
     {
-      
+        database = DataBase.Instance;
 //        SOUND.Instance.SetMuteMode(true);
         //downMr = SingleDownMgr.Instance;
         if (IsUpdateRes)
