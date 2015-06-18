@@ -45,8 +45,6 @@ public class GameScene
         
         
         mCurrentScene = scene;
-
-
     }
 	
 }
