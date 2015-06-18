@@ -39,10 +39,10 @@
 	<Reference Include="System.Core" />
 	<Reference Include="System.Xml.Linq" />
 	<Reference Include="UnityEngine">
-	  <HintPath>D:/Program Files/Unity5/Editor/Data/Managed/UnityEngine.dll</HintPath>
+	  <HintPath>E:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include="UnityEditor">
-	  <HintPath>D:/Program Files/Unity5/Editor/Data/Managed/UnityEditor.dll</HintPath>
+	  <HintPath>E:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
@@ -126,7 +126,6 @@
      <Compile Include="Assets\Scripts\Plugin\U3DExLib\effect\yScreenSizing.cs" />
      <Compile Include="Assets\Scripts\Plugin\U3DExLib\effect\yShadow.cs" />
      <Compile Include="Assets\Scripts\Plugin\U3DExLib\jTimeDestroyKill.cs" />
-     <Compile Include="Assets\Scripts\Plugin\U3DExLib\sound\SOUND.cs" />
      <Compile Include="Assets\Scripts\Plugin\U3DExLib\yCameraSize.cs" />
      <Compile Include="Assets\Scripts\Plugin\U3DExLib\yDelayShow.cs" />
      <Compile Include="Assets\Scripts\Plugin\U3DExLib\yEarthShake.cs" />
@@ -140,6 +139,7 @@
      <Compile Include="Assets\Scripts\Refactor\Net\NetService.cs" />
      <Compile Include="Assets\Scripts\Sfx\Bgm.cs" />
      <Compile Include="Assets\Scripts\Sfx\Sfx.cs" />
+     <Compile Include="Assets\Scripts\Sfx\sound\SOUND.cs" />
      <Compile Include="Assets\Scripts\UI\Character\BlinkEye.cs" />
      <Compile Include="Assets\Scripts\UI\Character\CharacterAnimator.cs" />
      <Compile Include="Assets\Scripts\UI\Common\ConfirmDialog.cs" />
@@ -283,22 +283,22 @@
      <None Include="Assets\Plugins\Android\res\layout\skyblue_editpage_at_layout.xml" />
      <None Include="Assets\Plugins\Android\res\values\instapaper_strings.xml" />
  <Reference Include="UnityEngine.UI">
- <HintPath>D:/Program Files/Unity5/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>D:/Program Files/Unity5/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
- <HintPath>D:/Program Files/Unity5/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
+ <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngineEx">
- <HintPath>F:/UnityProjects/TrenchGit/unity-trench/Assets/Plugins/UnityEngineEx.dll</HintPath>
+ <HintPath>D:/work/TrenchV3.0/unity-trench/Assets/Plugins/UnityEngineEx.dll</HintPath>
  </Reference>
  <Reference Include="ZZSDK">
- <HintPath>F:/UnityProjects/TrenchGit/unity-trench/Assets/Plugins/ZZSDK.dll</HintPath>
+ <HintPath>D:/work/TrenchV3.0/unity-trench/Assets/Plugins/ZZSDK.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
- <HintPath>D:/Program Files/Unity5/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+ <HintPath>E:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>
