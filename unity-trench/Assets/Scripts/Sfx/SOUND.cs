@@ -9,14 +9,14 @@ public class SOUND : MonoBehaviour
     { 
         get
         { 
-            if (null == instance)
-                instance = FindObjectOfType(typeof(SOUND)) as SOUND; 
-            if (null == instance)
-            { 
-                GameObject go = Instantiate(Resources.Load("Prefabs/Sound/SoundManager")) as GameObject;
-                go.name = "SoundManager";
-                instance = go.GetComponent<SOUND>();
-            } 
+//            if (null == instance)
+//                instance = FindObjectOfType(typeof(SOUND)) as SOUND; 
+//            if (null == instance)
+//            { 
+//                GameObject go = Instantiate(Resources.Load("Prefabs/Sound/SoundManager")) as GameObject;
+//                go.name = "SoundManager";
+//                instance = go.GetComponent<SOUND>();
+//            } 
             return instance; 
         }
     }
@@ -24,15 +24,15 @@ public class SOUND : MonoBehaviour
     void Awake()
     {
         
-        if (instance == null)
-        { 
-            instance = this.GetComponent<SOUND>(); 
-        } else
-        { 
-            Destroy(gameObject); 
-        } 
-        
-        DontDestroyOnLoad(gameObject); 
+//        if (instance == null)
+//        { 
+            instance = this; 
+//        } else
+//        { 
+//            Destroy(gameObject); 
+//        } 
+//        
+//        DontDestroyOnLoad(gameObject); 
         Init();
     }
 
