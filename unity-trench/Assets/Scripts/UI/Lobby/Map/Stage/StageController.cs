@@ -36,6 +36,8 @@ public class StageController : MonoBehaviour {
     [SerializeField]
     ParticleSystem openStageParticle;
 
+    [SerializeField]
+    GameObject CoverObj;
     //地图宽、高度
     private float mapWidth = 0;
     private float mapHeight = 0;
@@ -175,6 +177,7 @@ public class StageController : MonoBehaviour {
                     null,null,false
             );
         }
+        winData.StageId = 0;
         
     }
     //弹出关卡信息
@@ -250,6 +253,7 @@ public class StageController : MonoBehaviour {
 
             if (winData.StageId > DataBase.Instance.PLAYER.GetLastSuccessStage())
             {
+                CoverObj.SetActive(true);
                 Route.GoToStage((int)winData.StageId, delegate
                 {
                     var stageBut = Stages.FindChild("stage_" + winData.StageId);
@@ -274,6 +278,7 @@ public class StageController : MonoBehaviour {
     void stageOpen()
     {
         StageButClick(winData.StageId);
+        CoverObj.SetActive(false);
     }
     
 	
