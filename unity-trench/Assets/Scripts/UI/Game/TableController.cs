@@ -100,7 +100,7 @@ public class TableController : MonoBehaviour, IGameView
         //显示准备按钮
         //ToggleBtns (TableState.Ready, true, 0);
         MainGame.inst.OnReady();
-        SOUND.Instance.PlayBGM(Bgm.inst.game);
+        //SOUND.Instance.PlayBGM(Bgm.inst.game);
     }
     //输赢显示
     public void ShowRusult(bool isWin, Action onResultEnd=null)

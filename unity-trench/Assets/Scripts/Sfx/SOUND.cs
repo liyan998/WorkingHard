@@ -97,6 +97,9 @@ public class SOUND : MonoBehaviour
             MusicPlayer.Stop();
             return;
         }
+		if(BGM==MusicPlayer.clip && MusicPlayer.isPlaying){
+			return;
+		}
 
         MusicPlayer.clip = BGM;
         MusicPlayer.loop = bLoop;
