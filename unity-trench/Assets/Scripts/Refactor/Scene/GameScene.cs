@@ -26,11 +26,12 @@ public class GameScene
         SCENE_NETSCENE_HALL,
     }
 
-    public const string SC_Logo         = "Logo";
-    public const string SC_Loading      = "Loading";
-    public const string SC_Hall         = "Lobby";
-    public const string SC_Game         = "Game";
-    public const string SC_Login        = "Login";
+    public const string SC_Logo                     = "Logo";
+    public const string SC_Loading                  = "Loading";
+    public const string SC_STANDLONE_Hall           = "Lobby";
+    public const string SC_STANDLONE_Game           = "Game";
+    public const string SC_Login                    = "Login";
+    public const string SC_NETSCENE_HALL            = "OnlineLobby";
 
     /// <summary>
     /// 当前游戏场景
@@ -56,7 +57,10 @@ public class GameScene
                 Application.LoadLevelAsync(SC_Loading);
                 break;
             case SCENE.SCENE_STANDLONE_HALL:
-                Application.LoadLevelAsync(SC_Hall);
+                Application.LoadLevelAsync(SC_STANDLONE_Hall);
+                break;
+            case SCENE.SCENE_NETSCENE_HALL:
+                Application.LoadLevelAsync(SC_NETSCENE_HALL);
                 break;
         }        
         mCurrentScene = scene;

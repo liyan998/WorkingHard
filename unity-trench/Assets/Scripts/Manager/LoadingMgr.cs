@@ -61,7 +61,7 @@ public class LoadingMgr : MonoBehaviour
 
 		yield return new WaitForSeconds (2);
 
-		CallBackConntion (false);
+		CallBackConntion (true);
 	}
 
 	void StartLoading (bool sh)
