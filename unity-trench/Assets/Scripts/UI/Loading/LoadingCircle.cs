@@ -39,4 +39,9 @@ public class LoadingCircle : MonoBehaviour
 			}
 		}
 	}
+
+	public void Roll ()
+	{
+		StartCoroutine (Start ());
+	}
 }
