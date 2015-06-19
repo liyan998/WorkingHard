@@ -43,9 +43,10 @@ public class LoadingMgr : MonoBehaviour
             return;
         }
         //登录服务器
+        //打开loading
+
         Debug.Log("Login Server Testing");
-        mNetService.LoginServer();
-       
+        mNetService.LoginServer();       
     }
 
 
@@ -54,11 +55,19 @@ public class LoadingMgr : MonoBehaviour
     /// </summary>
     void CallBackConntion(bool isSuccess)
     {
-        Debug.Log("Login Server successed!");
-        Debug.Log("Login Server faild!");
+        //关闭loading
+
+        if(isSuccess)
+        {
+            Debug.Log("Login Server successed!");
+        }
+        else
+        {
+            Debug.Log("Login Server faild!");
+        }       
     }
 
-    
+
 
 
 
@@ -66,13 +75,15 @@ public class LoadingMgr : MonoBehaviour
     /// 打开UI界面
     /// </summary>
     void ShowDialogRetry()
-    {
-        //
+    {        //
         Debug.Log("Open Dialog Retry!");
-
     }
 
-    void GoDownLobby()
+
+    /// <summary>
+    /// 进入单击场
+    /// </summary>
+    public void GoDownLobby()
     {
         if (IsUpdateRes)
         {
@@ -84,12 +95,7 @@ public class LoadingMgr : MonoBehaviour
         else
             StartCoroutine(loadScence());
     }
-
-    void OnDestroy()
-    {
-        
     
-    }
 
     bool indown = false;
     void OnInitFinish(System.Exception err)
@@ -115,12 +121,13 @@ public class LoadingMgr : MonoBehaviour
             {
                 LoadingText.text = "加载场景中...";
                 StartCoroutine(loadScence());
-            }
-            
+            }            
         }
         else
             strState = null;
     }
+
+
     void DownLoadFinish()
     {
         indown = false;

@@ -11,10 +11,19 @@ public class GameScene
     /// </summary>
     public enum SCENE
     {
-        SCENE_LOGO,             //logo
-        SCENE_LOADING,          //loading
-        SCENE_STANDLONE_HALL,   //单机大厅
-        SCENE_NETSCENE_HALL,    //网络版大厅
+        SCENE_LOGO,
+        /// <summary>
+        /// Loading
+        /// </summary>
+        SCENE_LOADING,        
+        /// <summary>
+        /// 单机大厅
+        /// </summary>
+        SCENE_STANDLONE_HALL,
+        /// <summary>
+        /// 网络版大厅
+        /// </summary>
+        SCENE_NETSCENE_HALL,
     }
 
     public const string SC_Logo         = "Logo";
