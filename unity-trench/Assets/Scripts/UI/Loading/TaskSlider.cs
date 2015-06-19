@@ -79,7 +79,7 @@ public class TaskSlider : MonoBehaviour {
         for (int i = 0; i <= currentindex; i++)
         {           
             Card card = allCard[i];
-            if (card.type != CardType.Back)
+            if (card.type != CardType.Back || card.isFliping)
             {
                 continue;
             }

@@ -64,7 +64,7 @@ public class Card : MonoBehaviour
     //Action<Card> unSelect;
     Action onTouchUp;
     bool isPointerOn = false;
-//    bool isActive=false;
+    public bool isFliping=false;
     void Start()
     {
         Refresh();
@@ -263,6 +263,7 @@ public class Card : MonoBehaviour
     public void FlipBackward(float flipTime=defaultFlipTime)
     {
         //print ("Flip Backward!");
+		isFliping=true;
 		transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, 0, transform.localEulerAngles.z);
 		//iTween.RotateAdd(gameObject, iTween.Hash("y", -180f, "time", 0, "easetype", iTween.EaseType.easeOutQuad));
 		iTween.RotateAdd(gameObject, iTween.Hash("y", 180f, "time", flipTime, "easetype", iTween.EaseType.easeOutQuad));
@@ -273,6 +274,7 @@ public class Card : MonoBehaviour
     public void FlipForward(float flipTime=defaultFlipTime)
     {
         //print ("Flip Forward!");
+		isFliping=true;
 		transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, 180f, transform.localEulerAngles.z);
 		//iTween.RotateAdd(gameObject, iTween.Hash("y", 180f, "time", 0, "easetype", iTween.EaseType.easeOutQuad));
 		iTween.RotateAdd(gameObject, iTween.Hash("y", -180f, "time", flipTime, "easetype", iTween.EaseType.easeOutQuad));
@@ -288,6 +290,7 @@ public class Card : MonoBehaviour
         }
         SetCard(CardType.Back, 0);
         yield return 0;
+		isFliping=false;
     }
 
     IEnumerator JudgeCardForward()
@@ -298,6 +301,7 @@ public class Card : MonoBehaviour
         }
         SetCard(cacheType, cacheNum);
         yield return 0;
+		isFliping=false;
     }
 
     public bool IsPointerOn()
