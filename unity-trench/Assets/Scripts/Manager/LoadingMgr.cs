@@ -19,15 +19,63 @@ public class LoadingMgr : MonoBehaviour
 
     SingleDownMgr downMr;
 
-    DataBase database;
+    //------------------------------------------
+
+    NetService mNetService;
 
 	void Start() 
     {
-        database = DataBase.Instance;
-//        SOUND.Instance.SetMuteMode(true);
-        //downMr = SingleDownMgr.Instance;
+        mNetService = GameManager.Instance.NetService;
+
+        CheckNetWork();
+	}
+
+    /// <summary>
+    /// 检查网络连接
+    /// </summary>
+    void CheckNetWork()
+    {
+        if (Application.internetReachability == NetworkReachability.NotReachable)
+        {
+            Debug.Log("No Internet Conntion");
+            //弹窗提示
+            ShowDialogRetry();
+            return;
+        }
+        //登录服务器
+        Debug.Log("Login Server Testing");
+        mNetService.LoginServer();
+       
+    }
+
+
+    /// <summary>
+    /// 连接响应回调
+    /// </summary>
+    void CallBackConntion(bool isSuccess)
+    {
+        Debug.Log("Login Server successed!");
+        Debug.Log("Login Server faild!");
+    }
+
+    
+
+
+
+    /// <summary>
+    /// 打开UI界面
+    /// </summary>
+    void ShowDialogRetry()
+    {
+        //
+        Debug.Log("Open Dialog Retry!");
+
+    }
+
+    void GoDownLobby()
+    {
         if (IsUpdateRes)
-        { 
+        {
             List<string> wantdownGroup = new List<string>();
             wantdownGroup.Add("testdown");
             ResmgrNative.Instance.BeginInit("http://192.168.1.26/publicdown/", OnInitFinish, wantdownGroup);
@@ -35,8 +83,7 @@ public class LoadingMgr : MonoBehaviour
         }
         else
             StartCoroutine(loadScence());
-        
-	}
+    }
 
     void OnDestroy()
     {

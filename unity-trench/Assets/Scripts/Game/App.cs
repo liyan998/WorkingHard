@@ -41,7 +41,7 @@ public class App : MonoBehaviour
 	/// <summary>
 	/// 
 	/// </summary>
-	//DataBase DataCenter;             //数据中心
+	DataBase DataCenter;             //数据中心
 	DeviceManager DeviceManager;    //设备信息
 	Timer mTimer;
     

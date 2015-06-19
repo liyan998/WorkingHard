@@ -6,13 +6,15 @@ using System.Collections;
 /// </summary>
 public class GameScene
 {
-
+    /// <summary>
+    /// 游戏场景枚举
+    /// </summary>
     public enum SCENE
     {
-        SCENE_LOGO,     //logo
-        SCENE_LOADING,  //loading
-        SCENE_
-        
+        SCENE_LOGO,             //logo
+        SCENE_LOADING,          //loading
+        SCENE_STANDLONE_HALL,   //单机大厅
+        SCENE_NETSCENE_HALL,    //网络版大厅
     }
 
     public const string SC_Logo         = "Logo";
@@ -33,6 +35,10 @@ public class GameScene
         }
     }
 
+    /// <summary>
+    /// 场景切换
+    /// </summary>
+    /// <param name="scene"></param>
     public void SetGameScene(SCENE scene)
     {
         switch(scene)
@@ -40,10 +46,10 @@ public class GameScene
             case SCENE.SCENE_LOADING:
                 Application.LoadLevelAsync(SC_Loading);
                 break;
-        }
-        
-        
-        
+            case SCENE.SCENE_STANDLONE_HALL:
+                Application.LoadLevelAsync(SC_Hall);
+                break;
+        }        
         mCurrentScene = scene;
     }
 	
