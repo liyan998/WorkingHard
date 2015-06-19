@@ -55,6 +55,13 @@ public class LobbyController : MonoBehaviour
     void Awake()
     {
         inst = this;
+		if(Application.loadedLevelName=="Lobby"){
+			PlayerPrefs.SetInt("IsLobby",1);//0:no,1:normal,2:net
+		}else if(Application.loadedLevelName=="OnlineLobby"){
+			PlayerPrefs.SetInt("IsLobby",2);//0:no,1:normal,2:net
+		}else{
+			PlayerPrefs.SetInt("IsLobby",0);//0:no,1:normal,2:net
+		}
     }
 
     void Start()
