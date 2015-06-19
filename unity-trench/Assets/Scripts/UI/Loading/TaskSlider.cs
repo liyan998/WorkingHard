@@ -11,15 +11,27 @@ public class TaskSlider : MonoBehaviour {
     int part;
 
     List<Card> allCard;
-	void Start () {
+
+
+
+    void Awake()
+    {
+        
+  
+
+    }
+
+
+    void initCardList()
+    {
         allCard = new List<Card>();
 
-        for(int i = 0;i < cardlist.Length;i++)
+        for (int i = 0; i < cardlist.Length; i++)
         {
             Card card = Instantiate(CCard) as Card;
             card.transform.SetParent(this.transform);
             card.SetCard(cardlist[i]);
-            card.SetCard(CardType.Back,0);           
+            card.SetCard(CardType.Back, 0);
 
             RectTransform rt = card.GetComponent<RectTransform>();
             //rt.rotation = Quaternion.Euler(new Vector3(0f, 0f, 340f));
@@ -28,14 +40,22 @@ public class TaskSlider : MonoBehaviour {
 
             allCard.Add(card);
         }
+    }
   
-        //SetPart(17);
+	void Start ()
+    {
+        initCardList();
 
-        //StartCoroutine(TestSlider());
+        this.gameObject.SetActive(false);
 	}
 	
 	public void SetPart(int part)
     {
+        if(!gameObject.activeSelf)
+        {
+            this.gameObject.SetActive(true);
+        }
+
         this.part = part;
        // Debug.Log("TaskSlider:"+ part);
         flushPart();
@@ -44,6 +64,7 @@ public class TaskSlider : MonoBehaviour {
     int currentindex =-1; 
     public void flushPart()
     {
+        
         float partvalue = 1f / allCard.Count * 100;
         //Debug.Log(1f / allCard.Count * 100);
         int completepart = (int)(part / partvalue);

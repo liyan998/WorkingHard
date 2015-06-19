@@ -32,28 +32,44 @@ public class LoadingMgr : MonoBehaviour
     {
         mNetService = GameManager.Instance.NetService;
 
-        CheckNetWork();
+        CheckNet();
 	}
+
+    void CheckNet()
+    {
+        LoadingDlgManager.inst.HideDialog(0);
+        StartCoroutine(CheckNetWork());
+    }
 
     /// <summary>
     /// 检查网络连接
     /// </summary>
-    void CheckNetWork()
+    IEnumerator CheckNetWork()
     {
         if (Application.internetReachability == NetworkReachability.NotReachable)
         {
             Debug.Log("No Internet Conntion");
             //弹窗提示
             ShowDialogRetry();
-            return;
+            yield return 0;
         }
         //登录服务器
         //打开loading
 
-        mLoading.SetActive(true);
+        StartLoading(true);
 
         Debug.Log("Login Server Testing");
-        mNetService.LoginServer();       
+        mNetService.LoginServer();
+
+        yield return new WaitForSeconds(2);
+
+        CallBackConntion(false);
+    }
+
+
+    void StartLoading(bool sh)
+    {
+        mLoading.SetActive(sh);
     }
 
 
@@ -67,10 +83,13 @@ public class LoadingMgr : MonoBehaviour
         if(isSuccess)
         {
             Debug.Log("Login Server successed!");
+            GameScene gs = GameManager.Instance.GameScene;
+            gs.SetGameScene(GameScene.SCENE.SCENE_NETSCENE_HALL);
         }
         else
         {
             Debug.Log("Login Server faild!");
+            ShowDialogRetry();
         }       
     }
 
@@ -82,10 +101,10 @@ public class LoadingMgr : MonoBehaviour
     /// 打开UI界面
     /// </summary>
     void ShowDialogRetry()
-    {        //
+    {        
         Debug.Log("Open Dialog Retry!");
 
-        LoadingDlgManager.inst.ShowConfirmDialog("描述",()=>{}, "去单机场", true, ()=>{}, "重试")；
+        LoadingDlgManager.inst.ShowConfirmDialog("Retry描述", GoDownLobby, "去单机场", true, CheckNet, "重试");
     }
 
 
@@ -94,6 +113,7 @@ public class LoadingMgr : MonoBehaviour
     /// </summary>
     public void GoDownLobby()
     {
+        LoadingDlgManager.inst.HideDialog(0);
         if (IsUpdateRes)
         {
             List<string> wantdownGroup = new List<string>();
@@ -102,7 +122,10 @@ public class LoadingMgr : MonoBehaviour
             LoadingText.text = "检查资源";
         }
         else
+        {
+            DataBase database = DataBase.Instance;
             StartCoroutine(loadScence());
+        }
     }
     
 

@@ -19,5 +19,7 @@ public class NetService
     public void LoginServer()
     {
         Debug.Log("NetService:LoginServer...");
+
+
     }
 }
