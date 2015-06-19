@@ -263,8 +263,9 @@ public class Card : MonoBehaviour
     public void FlipBackward(float flipTime=defaultFlipTime)
     {
         //print ("Flip Backward!");
-        transform.eulerAngles = new Vector3(transform.eulerAngles.x, 0, transform.eulerAngles.z);
-        iTween.RotateTo(gameObject, iTween.Hash("rotation", transform.eulerAngles + Vector3.up * 180f, "time", flipTime, "easetype", iTween.EaseType.easeOutQuad));
+		transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, 0, transform.localEulerAngles.z);
+		//iTween.RotateAdd(gameObject, iTween.Hash("y", -180f, "time", 0, "easetype", iTween.EaseType.easeOutQuad));
+		iTween.RotateAdd(gameObject, iTween.Hash("y", 180f, "time", flipTime, "easetype", iTween.EaseType.easeOutQuad));
         StartCoroutine(JudgeCardBackward());
         SOUND.Instance.OneShotSound(Sfx.inst.chooseCard);
     }
@@ -272,15 +273,16 @@ public class Card : MonoBehaviour
     public void FlipForward(float flipTime=defaultFlipTime)
     {
         //print ("Flip Forward!");
-        transform.eulerAngles = new Vector3(transform.eulerAngles.x, 180f, transform.eulerAngles.z);
-        iTween.RotateTo(gameObject, iTween.Hash("rotation", transform.eulerAngles - Vector3.up * 180f, "time", flipTime, "easetype", iTween.EaseType.easeOutQuad));
+		transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, 180f, transform.localEulerAngles.z);
+		//iTween.RotateAdd(gameObject, iTween.Hash("y", 180f, "time", 0, "easetype", iTween.EaseType.easeOutQuad));
+		iTween.RotateAdd(gameObject, iTween.Hash("y", -180f, "time", flipTime, "easetype", iTween.EaseType.easeOutQuad));
         StartCoroutine(JudgeCardForward());
         SOUND.Instance.OneShotSound(Sfx.inst.chooseCard);
     }
 
     IEnumerator JudgeCardBackward()
     {
-        while (transform.eulerAngles.y < 90)
+		while (transform.localEulerAngles.y < 90)
         {
             yield return 0;
         }
@@ -290,7 +292,7 @@ public class Card : MonoBehaviour
 
     IEnumerator JudgeCardForward()
     {
-        while (transform.eulerAngles.y > 90)
+		while (transform.localEulerAngles.y > 90)
         {
             yield return 0;
         }
