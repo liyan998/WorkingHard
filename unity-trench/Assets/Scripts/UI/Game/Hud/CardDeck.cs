@@ -119,7 +119,7 @@ public class CardDeck : MonoBehaviour
                 } else
                 {
                     beginV3.x += (i - 10) * distance;
-                    beginV3.y = -0.5f * cardHeight;
+                    beginV3.y = -0.56f * cardHeight;
                 }
                 if (vfx == VFX.InkSplash)
                 {

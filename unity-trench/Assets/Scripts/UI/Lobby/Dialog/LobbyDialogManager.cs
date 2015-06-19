@@ -22,7 +22,13 @@ public enum LobbyDialog
     BindPhone=10,
     HelpInfo=11,
     Upgrade=12,
-    StageProDlg=13
+    StageProDlg=13,
+
+	MainMenu,
+	Arena,
+	Map,
+	Shop,
+
 }
 
 public class LobbyDialogManager : DialogManager

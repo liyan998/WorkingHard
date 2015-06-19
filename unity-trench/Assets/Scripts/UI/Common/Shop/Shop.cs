@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class Shop : MonoBehaviour
+public class Shop : Dialog
 {
 	[SerializeField]
 	GoodItem
@@ -31,7 +31,7 @@ public class Shop : MonoBehaviour
 		dialogs = LobbyDialogManager.inst;
 	}
 
-	public void Init ()
+	public override void Init ()
 	{
 		//Debug.Log (datas.goodData.Count);
 		if (coinGoods.Count > 0) {

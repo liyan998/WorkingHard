@@ -18,7 +18,7 @@ public class LoadingMgr : MonoBehaviour
 		mTaskSlider;
 	SingleDownMgr downMr;
 	[SerializeField]
-	LoadingCircle
+	NormalLoadingCircle
 		mLoading;//loading菊花
 
 
