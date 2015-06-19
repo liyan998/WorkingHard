@@ -41,7 +41,7 @@ public class App : MonoBehaviour
 	/// <summary>
 	/// 
 	/// </summary>
-	DataBase DataCenter;             //数据中心
+	//DataBase DataCenter;             //数据中心
 	DeviceManager DeviceManager;    //设备信息
 	Timer mTimer;
     
@@ -76,7 +76,8 @@ public class App : MonoBehaviour
 		//Debug.Log(ssssss);
 		//Debug.Log(ssss.ToJSON());
 		//Debug.Log(DeviceManager.ToJSON());
-		DataCenter = DataBase.Instance;
+
+		//DataCenter = DataBase.Instance;
 
 
 		txtVer.text = COMMON_CONST.Version;
