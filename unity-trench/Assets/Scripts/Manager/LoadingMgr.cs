@@ -94,7 +94,6 @@ public class LoadingMgr : MonoBehaviour
         int toProgress = 0;
         while (async.progress < .9f)
         {
-
             toProgress = (int)(async.progress * 100);
 
             while (displayProgress < toProgress)
@@ -103,11 +102,8 @@ public class LoadingMgr : MonoBehaviour
                 LoadingSlider.value = displayProgress;
                 mTaskSlider.SetPart(displayProgress);
                 yield return new WaitForEndOfFrame();
-            }
-           
+            }           
         }
-
-
         toProgress = 100;
         while (displayProgress < toProgress)
         {
@@ -116,7 +112,6 @@ public class LoadingMgr : MonoBehaviour
             mTaskSlider.SetPart(displayProgress);
             yield return new WaitForEndOfFrame();
         }
-
 
         mTaskSlider.SetPart(toProgress);
         LoadingText.text = "加载完成";
@@ -127,7 +122,8 @@ public class LoadingMgr : MonoBehaviour
 
 
 
-	void Update () {
+	void Update () 
+    {
         if (IsUpdateRes)
         {
             ResmgrNative.Instance.Update();
@@ -136,18 +132,12 @@ public class LoadingMgr : MonoBehaviour
                 float downingSize = ResmgrNative.Instance.taskState.downingSize / 1024f;
                 float tasksize = ResmgrNative.Instance.taskState.tasksize / 1024f;
 
-
                 LoadingText.text = downingSize.ToString("f2") +
                                    "M / " + downingSize.ToString("f2") + "M";
                 LoadingSlider.value = downingSize / tasksize * 10;
 
-                mTaskSlider.SetPart((int)(LoadingSlider.value * 10));
-                
+                mTaskSlider.SetPart((int)(LoadingSlider.value * 10));                
             }
         }
-
-
-        
- 
 	}
 }
