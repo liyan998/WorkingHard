@@ -61,7 +61,7 @@ public class LoadingMgr : MonoBehaviour
 
 		yield return new WaitForSeconds (2);
 
-		CallBackConntion (true);
+		CallBackConntion (false);
 	}
 
 	void StartLoading (bool sh)
@@ -110,6 +110,7 @@ public class LoadingMgr : MonoBehaviour
 	/// </summary>
 	public void GoDownLobby ()
 	{
+        
 		LoadingDlgManager.inst.HideDialog (0);
 		if (IsUpdateRes) {
 			List<string> wantdownGroup = new List<string> ();
@@ -118,6 +119,7 @@ public class LoadingMgr : MonoBehaviour
 			LoadingText.text = "检查资源";
 		} else {
 			DataBase database = DataBase.Instance;
+            LoadingText.text = "努力加载中...";
 			StartCoroutine (loadScence ());
 		}
 	}
