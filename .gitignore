@@ -197,3 +197,5 @@ FakesAssemblies/
 /unity-trench/UnityVS.unity-trench.CSharp.Plugins.csproj
 /unity-trench/Library
 /unity-trench/*.sln
+/unity-trench/UnityVS.unity-trench.CSharp.Editor.csproj
+/unity-trench/UnityVS.unity-trench.CSharp.csproj

@@ -19,6 +19,11 @@ public class LoadingMgr : MonoBehaviour
 
     SingleDownMgr downMr;
 
+    [SerializeField]
+    GameObject mLoading;//loading菊花
+
+
+
     //------------------------------------------
 
     NetService mNetService;
@@ -45,6 +50,8 @@ public class LoadingMgr : MonoBehaviour
         //登录服务器
         //打开loading
 
+        mLoading.SetActive(true);
+
         Debug.Log("Login Server Testing");
         mNetService.LoginServer();       
     }
@@ -56,7 +63,7 @@ public class LoadingMgr : MonoBehaviour
     void CallBackConntion(bool isSuccess)
     {
         //关闭loading
-
+        mLoading.SetActive(false);
         if(isSuccess)
         {
             Debug.Log("Login Server successed!");
@@ -77,6 +84,8 @@ public class LoadingMgr : MonoBehaviour
     void ShowDialogRetry()
     {        //
         Debug.Log("Open Dialog Retry!");
+
+        LoadingDlgManager.inst.ShowConfirmDialog("描述",()=>{}, "去单机场", true, ()=>{}, "重试")；
     }
 
 
